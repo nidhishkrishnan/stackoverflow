@@ -13,7 +13,6 @@ import org.testcontainers.containers.BindMode;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-//@ActiveProfiles("test")
 @Testcontainers
 @SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT, properties = {"spring.main.allow-bean-definition-overriding=true"})
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) // don't replace our DB with an in-memory one
@@ -44,16 +43,4 @@ public abstract class AbstractIT {
             );
         }
     }
-//    @Configuration
-//    static class Config {
-//        @Bean
-//        public DogClient dogClient() {
-//            return () -> {
-//                DogApiResponse dogApiResponse = new DogApiResponse();
-//                dogApiResponse.setMessage("mes1");
-//                dogApiResponse.setStatus("sat1");
-//                return dogApiResponse;
-//            };
-//        }
-//    }
 }
