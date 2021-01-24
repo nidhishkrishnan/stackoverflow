@@ -1,0 +1,59 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.5.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+
+group = 'com.employee'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+ext['junit-jupiter.version'] = '5.4.0'
+ext {
+	set('swagger2Version', '2.9.2')
+	set('lombokVersion', '1.18.12')
+	set('springCloudVersion', "Greenwich.SR5")
+	set('testContainersVersion', '1.15.0')
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	implementation 'org.postgresql:postgresql:9.2-1004-jdbc41'
+	compileOnly "org.projectlombok:lombok:${lombokVersion}"
+	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+	implementation 'org.apache.commons:commons-lang3:3.9'
+
+	testCompile 'org.junit.jupiter:junit-jupiter-api'
+	testCompile 'org.junit.jupiter:junit-jupiter-engine'
+	testCompile 'org.mockito:mockito-junit-jupiter'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+
+	testCompile "org.testcontainers:junit-jupiter:${testContainersVersion}"
+	testCompile "org.testcontainers:postgresql:${testContainersVersion}"
+	testCompile "org.testcontainers:elasticsearch:${testContainersVersion}"
+
+	testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+	testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+
+
+test {
+	useJUnitPlatform()
+}
