@@ -11,9 +11,8 @@ sourceCompatibility = '1.8'
 repositories {
 	mavenCentral()
 }
-ext['junit-jupiter.version'] = '5.4.0'
+
 ext {
-	set('swagger2Version', '2.9.2')
 	set('lombokVersion', '1.18.12')
 	set('springCloudVersion', "Greenwich.SR5")
 	set('testContainersVersion', '1.15.0')
@@ -24,7 +23,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	
 	implementation 'org.postgresql:postgresql:9.2-1004-jdbc41'
 	compileOnly "org.projectlombok:lombok:${lombokVersion}"
 	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
